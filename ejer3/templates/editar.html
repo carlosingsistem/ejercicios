@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Crear Contacto</h2>
+<form action="{{ url_for("actualizar_contacto")}}" method="post">
+    <input type="hidden" name="id" value="{{ contacto.id}}">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="nombre"
+            placeholder="Nombre" value="{{ contacto.nombre }}" required>
+    </div>
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" name="correo"
+            placeholder="Correo" value="{{ contacto.correo }}" required>
+    </div>
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Celular</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="celular"
+            placeholder="Celular" value="{{ contacto.celular }}" required>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success mb-3">Confirm</button>
+        <a class="btn btn-danger mb-3" href="{{ url_for("listar_contactos")}}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

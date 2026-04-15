@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de contactos</h2>
+<a href="/crear" class="btn btn-primary mb-3">Crear Contacto</a>
+<a class="btn btn-danger mb-3" href="{{ url_for("clear_session")}}">Limpiar datos</a>
+
+<table class="table">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Editar</th>
+        <th scope="col">Eliminar</th>
+    </tr>
+    {% for contacto in contactos %}
+    <tr>
+        <th scope="row">{{ loop.index }}</th>
+        <td>{{ contacto.nombre }}</td>
+        <td>{{ contacto.correo }}</td>
+        <td>{{ contacto.celular }}</td>
+        <td><a class="btn btn-warning mb-3" href="/editar/{{ contacto.id }}">Editar</a></td>
+        <td><a class="btn btn-danger mb-3" href="{{ url_for("eliminar_contacto", id=contacto.id) }}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

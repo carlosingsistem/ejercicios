@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="{{ url_for("carrito")}}" method="post">
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Product´s name</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="name_pro"
+            placeholder="Product´s name">
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary mb-3">Confirm</button>
+        <a class="btn btn-danger mb-3" href="{{ url_for("clear_session")}}"> Vaciar session</a>
+    </div>
+</form>
+<h2>Lista de productos en el carrito</h2>
+{% if productos %}
+<ul class="list-group"></ul>
+{% for pro in productos %}
+    <li class="list-group-item">{{ loop.index0 + 1 }}. {{ pro }} <a class="btn btn-info mb-3" href="{{ url_for("pop", index=loop.index0)}}"> pop</a></li>
+{% endfor %}
+</ul>
+{% else %}
+    <p>No hay productos en el carrito.</p>
+{% endif %}
+
+{% if msg %}
+    <p>{{ msg }}</p>
+{% endif %}
+
+{% endblock %}

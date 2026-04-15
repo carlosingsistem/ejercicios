@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de productos en el carrito</h2>
+<a href="/create" class="btn btn-primary mb-3">Añadir producto</a>
+<a class="btn btn-danger mb-3" href="{{ url_for("clear_session")}}"> Vaciar session</a>
+
+<table class="table">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Total</th>
+        <th scope="col">Action</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+        <th scope="row">{{ loop.index0 + 1 }}</th>
+        <td>{{ item.producto }}</td>
+        <td>{{ item.precio }}</td>
+        <td>{{ item.cantidad }}</td>
+        <td>{{ item.total }}</td>
+        <td><a class="btn btn-info mb-3" href="{{ url_for("eliminar_producto", id=item.id) }}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p>Total general: {{ total or 0}}</p>
+
+{% endblock %}
